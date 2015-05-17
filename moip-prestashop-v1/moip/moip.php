@@ -213,7 +213,7 @@ e dar mais segurança para os seus clientes no momento da compra.');
 
                 foreach ($languages as $language_atual) {
                     /** CRIANDO AS DESCRICOES DOS STATUS NA TABELA order_state_lang  * */
-                    Db::getInstance()->Execute('INSERT INTO `' . _DB_PREFIX_ . 'order_state_lang`
+                    Db::getInstance()->Execute('INSERTne INTO `' . _DB_PREFIX_ . 'order_state_lang`
 				(`id_order_state`, `id_lang`, `name`, `template`)
 					VALUES
 				(' . $this->figura . ', ' . $language_atual['id_lang'] . ', \'' . $value[2] . '\', \'' . $value[3] . '\');');
@@ -941,17 +941,7 @@ e dar mais segurança para os seus clientes no momento da compra.');
             $order = new Order($id_order);
             $history = new OrderHistory();
             $history->id_order = intval($order->id);
-              //igor
-            if(intval($paymentStatus['configId']) == 25){
-                $history->changeIdOrderState(2, intval($order->id)); //pagamento aceito       
-            }
-            elseif (intval($paymentStatus['configId']) == 28) {
-                    //do nothing - useless state
-                }    
-            else{
-                $history->changeIdOrderState(intval($paymentStatus['configId']), intval($order->id));
-            }
-            //fim igor
+            $history->changeIdOrderState(intval($paymentStatus['configId']), intval($order->id));
             $history->addWithemail(true, $extraVars);
             $log->write("Status atualizado Order: [" . $order->id . "]");
         }
