@@ -213,7 +213,7 @@ e dar mais segurança para os seus clientes no momento da compra.');
 
                 foreach ($languages as $language_atual) {
                     /** CRIANDO AS DESCRICOES DOS STATUS NA TABELA order_state_lang  * */
-                    Db::getInstance()->Execute('INSERTne INTO `' . _DB_PREFIX_ . 'order_state_lang`
+                    Db::getInstance()->Execute('INSERT INTO `' . _DB_PREFIX_ . 'order_state_lang`
 				(`id_order_state`, `id_lang`, `name`, `template`)
 					VALUES
 				(' . $this->figura . ', ' . $language_atual['id_lang'] . ', \'' . $value[2] . '\', \'' . $value[3] . '\');');
